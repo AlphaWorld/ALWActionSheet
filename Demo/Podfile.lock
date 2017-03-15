@@ -1,0 +1,28 @@
+PODS:
+  - ALWkit (1.0.3):
+    - Masonry (~> 0.6.2)
+    - MBProgressHUD (~> 0.9.1)
+  - Masonry (0.6.4)
+  - MBProgressHUD (0.9.2)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+
+DEPENDENCIES:
+  - ALWkit
+  - Masonry (~> 0.6.2)
+  - ReactiveCocoa (~> 2.5)
+
+SPEC CHECKSUMS:
+  ALWkit: 20e2a1536374956c927c15413fb3802149e1d312
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+
+PODFILE CHECKSUM: 0dafc818aab32cacae6400c1d47d013ea329f25a
+
+COCOAPODS: 1.1.1
