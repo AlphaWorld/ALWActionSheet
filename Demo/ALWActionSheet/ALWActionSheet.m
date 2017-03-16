@@ -80,8 +80,10 @@
 
 - (void)show
 {
-    self.frame = ALWKeyWindow.bounds;
     [ALWKeyWindow addSubview:self];
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(ALWKeyWindow);
+    }];
     [self _alw_configSubviews];
     self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
     [UIView animateWithDuration:0.1 animations:^{
@@ -89,6 +91,9 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
             self.tableView.frame = [self _alw_frameForActionSheetView];
+            [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.mas_bottom).offset(-[self _alw_heightForActionSheetView]);
+            }];
         }];
     }];
 }
@@ -97,13 +102,18 @@
 {
     self.containerView = [[UIView alloc] init];
     self.containerView.backgroundColor = [UIColor clearColor];
-    self.containerView.frame = self.bounds;
-    [self addSubview:self.containerView];
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self);
+    }];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_alw_dismiss)];
     tap.delegate = self;
     [self.containerView addGestureRecognizer:tap];
-    self.tableView.frame = CGRectMake(0, ALWScreenHeight, ALWScreenWidth, [self _alw_heightForActionSheetView]);
     [self addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(self.mas_bottom);
+        make.height.equalTo(@([self _alw_heightForActionSheetView]));
+    }];
 }
 
 - (CGRect)_alw_dissmissFrameForActionSheetView
